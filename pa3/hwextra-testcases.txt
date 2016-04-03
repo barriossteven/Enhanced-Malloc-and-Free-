@@ -1,0 +1,108 @@
+			+++++++++++++++++++++++++++++++++++++++++
+			+  Error Detecting malloc() and free()  +
+			+		Test Cases		+
+			+++++++++++++++++++++++++++++++++++++++++
+
+TEST CASE ONE: FREE AN OBJECT THAT HASN'T BEEN ALLOCATED WITH AN EMPTY LIST
+
+INPUT: 
+
+char *v;
+free(v);
+
+EXPECTED OUTPUT:
+
+LIST EMPTY, ERROR 'main.c' AT (number)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TEST CASE TWO: FREE AN OBJECT THAT HASN'T BEEN ALLOCATED WHEN THE LIST IS FULL
+
+INPUT:
+
+char *y;
+y = (char*)malloc(4980);
+
+char *z;
+free(z);
+
+EXPECTED OUTPUT:
+
+ERROR IN FREE. POINTER IS NULL. FREE FAILED IN FILE 'main.c' ON LINE (number)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TEST THREE: TRY TO ALLOCATE SOMETHING WHILE THE LIST IS FULL 
+
+INPUT:
+
+char *y;
+y = (char*)malloc(4980);
+
+char *z;
+y = (char*)malloc(500);
+
+EXPECTED OUTPUT:
+
+ERROR. MALLOC FAILED IN FILE. NOT ENOUGH SIZE FOR REQUEST. 'main.c' ON LINE (NUMBER)
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TEST FOUR: ALLOCATE 3 ITEMS, FREE ALL OF THEM
+
+INPUT:
+
+char *y;
+y = (char*)malloc(50);
+
+char *x;
+x = (char*)malloc(50);
+
+char *z;
+z = (char*)malloc(50);
+
+free(y);
+free(x);
+free(z);
+
+EXPECTED OUTPUT:
+
+SUCCESS
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+TEST FIVE: FRAGMENTATION
+
+INPUT:
+
+char *y;
+y = (char*)malloc(1000);
+
+char *x;
+x = (char*)malloc(500);
+
+char *z;
+z = (char*)malloc(50);
+
+char *b;
+b = (char*)malloc(50);
+
+char *a;
+a = (char*)malloc(3380);
+
+
+free(z);
+free(b);
+
+char *c;
+c = (char*)malloc(70);
+
+EXPECTED OUTPUT:
+
+SUCCESS
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
